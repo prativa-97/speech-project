@@ -12,7 +12,6 @@ import numpy as np
 #INPUT_PATH = 
 #TARGET_PATH = 
 
-#Learning Parameters
 momentum = 0.9
 nEpochs = 300
 batchSize = 128
@@ -22,7 +21,7 @@ nHidden = 512
 nClasses = 30 
 
 #DataLoading 
-with open(' ','rb') as f:          #add file name in the blank space
+with open('TIMIT_data_prepared_for_CTC.pkl','rb') as f:          #add file name in the blank space
 	data= pickle.load(f)
 
 input_list = data['x']
@@ -74,9 +73,9 @@ inputXrs = tf.reshape(inputX, [-1, nFeatures])
     		dense_pred = tf.sparse_tensor_to_dense(predictions)
     		errorRate = tf.reduce_sum(tf.edit_distance(predictions, targetY, normalize=False)) 
          
-            local net = nn.Sequential()                                                              #For adding projection layer
-            net:add(nn.SeqLSTM(inputX, forwardH1))
-            net:add(nn.TemporalAdapter(nn.Linear(backwardH1, out1)))   #in the blank, put the parameter of the output
+            	local net = nn.Sequential()                                                              #For adding projection layer
+            	net:add(nn.SeqLSTM(inputX, forwardH1))
+            	net:add(nn.TemporalAdapter(nn.Linear(backwardH1, out1)))   
 
 #Run
 with tf.Session(graph=graph) as session:
