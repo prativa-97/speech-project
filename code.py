@@ -12,6 +12,7 @@ import numpy as np
 #INPUT_PATH = 
 #TARGET_PATH = 
 
+#Learning Parameters
 momentum = 0.9
 nEpochs = 300
 batchSize = 128
